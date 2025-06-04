@@ -1,6 +1,5 @@
 import numpy as np
 from typing import Union
-import os,time
 # 1)Any live cell with fewer than two live neighbours dies, 
 # as if by underpopulation.
 # 2)Any live cell with two or three live neighbours
