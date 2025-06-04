@@ -1,5 +1,6 @@
 import numpy as np
 from typing import Union
+import os,time
 # 1)Any live cell with fewer than two live neighbours dies, 
 # as if by underpopulation.
 # 2)Any live cell with two or three live neighbours
@@ -26,7 +27,7 @@ def does_cell_exist(cell:tuple,array_shape:tuple)->bool:
     if(x < 0 or y < 0):
         return False
     if(x> length_x-1 or y > length_y-1):
-        print("Index out of bound")
+       # print("Index out of bound")
         return False
     return True
 
@@ -62,19 +63,11 @@ def check_live_neighbours(cell:tuple,np_array:np.ndarray)->int:  #ask for opinio
     return neighbour_count
 
 
-
-
-l,b = 10,13
-np_array = np.empty((l,b))
-
-np_array.fill(1)
-# state_changer((7,7),np_array,None)
-# print(check_alive((7,3),np_array))
-print(does_cell_exist((0,22),np_array.shape))
-
-nei = enumerate_neighbours((0,0),np_array)
-count =check_live_neighbours((0,0),np_array)
-print(nei,count)
-
-# print(type(np_array))
-# print(np_array)
+def life(np_array:np.ndarray)->np.ndarray:
+    np_copy_array = np_array.copy()
+    l,b = np_array.shape
+    for i in range(l):
+        for j in range(b):
+            live_neighbours = check_live_neighbours((i,j),np_array)
+            judge((i,j),live_neighbours,np_copy_array)
+    return np_copy_array

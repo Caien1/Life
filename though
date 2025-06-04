@@ -3,3 +3,10 @@
                         (i-1,j-1) (i-1,j) (i-i,j+1)              
                         ( i,j-1) (i,j) (i,j+1)
                     (i+1 ,j-1)  (i+1,j) (i+1,j+1)
+
+
+
+
+                    5,4
+(5*row, 5*colum) 5*row+row,5*col+col
+
