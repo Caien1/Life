@@ -2,7 +2,7 @@
 ***
 
 [WikiPedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)
-
+ ![] (https://github.com/Caien1/Life/blob/main/game_of_life.gif)
 
 **Rules**  
 
