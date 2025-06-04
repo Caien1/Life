@@ -2,8 +2,11 @@
 ***
 
 [WikiPedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)  
+***  
 
  ![GIF](https://raw.githubusercontent.com/Caien1/Life/refs/heads/main/game_of_life.gif)
+
+ ***
 
 **Rules**  
 
