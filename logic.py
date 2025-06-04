@@ -8,7 +8,7 @@ from typing import Union
 # , as if by overpopulation.
 #4) Any dead cell with exactly three live neighbours becomes a live cell,
 #  as if by reproduction.
-def judge(cell:tuple,neighbour_live_count:int,np_array:np.ndarray):
+def judge(cell:tuple,neighbour_live_count:int,np_array:np.ndarray)->None:
     isalive = check_alive(cell,np_array)
     if(isalive and neighbour_live_count<2):
         state_changer(cell,np_array,0)
