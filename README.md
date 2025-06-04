@@ -4,7 +4,8 @@
 [WikiPedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)
 
 
-**Rules**
+**Rules**  
+
 1._Any live cell with fewer than two live neighbours dies,  as if by underpopulation._  
 
 
