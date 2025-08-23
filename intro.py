@@ -19,7 +19,27 @@ def paint_cells(screen:pg.surface.Surface,width:int,height:int,np_array:np.ndarr
             if np_array[i,j] ==1:
                     pg.draw.rect(screen,"beige",(i*width,j*height,width,height))
 
+def display_paused(screen):
+    screen.fill("black");
+    font = pg.font.Font(None,64)
+    color = pg.Color(0,0,255)
+    text =font.render("PAUSED",True, color)
+    textpos = text.get_rect(centerx=screen.get_width() / 2, y=screen.get_width()/2-110)
+    screen.blit(text, textpos)
+    screen.blit(screen, (0, 0))
+    font_paused = pg.font.Font(None,20)
+    text_paused = font_paused.render("Press P to start again",True,(10,255,10))
+    text_paused_position = text.get_rect(centerx=screen.get_width() / 2 + 20, y=screen.get_width()/2)
+    screen.blit(text_paused,text_paused_position )
+    screen.blit(screen, (0, 0))
+    pg.display.flip()
 
+
+
+   
+   
+
+    
 
 
 
@@ -39,21 +59,24 @@ clock =pg.time.Clock();
 running = True
 
 
+WindowPaused = False
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
-            running = False 
+            running = False
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_p:
+                WindowPaused = not WindowPaused
 
-    screen.fill("black")
-
-
-
-    make_grid(screen,rows,columns,X,Y)
-    paint_cells(screen,rows,columns,boxes)
-    make_grid(screen,rows,columns,X,Y)
-    boxes=logic.life(boxes).copy()
-    time.sleep(1)
-
+    if WindowPaused:
+        display_paused(screen)
+    else:         
+        screen.fill("black")
+        make_grid(screen,rows,columns,X,Y)
+        paint_cells(screen,rows,columns,boxes)
+        make_grid(screen,rows,columns,X,Y)
+        boxes=logic.life(boxes).copy()
+        time.sleep(1)
     
 
     pg.display.flip()
