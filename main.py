@@ -47,71 +47,65 @@ def display_paused(screen:pg.surface.Surface)->None:
     pg.display.flip()
 
 
-
-   
-   
-
-    
-
-
-
-a,b = pg.init()
-# print(a,b)
-X,Y = 1080, 1080 #resolution
-(L,B) = 32,32 #grid_size
+def main():
+    a,b = pg.init()
+    # print(a,b)
+    X,Y = 1080, 1080 #resolution
+    (L,B) = 32,32 #grid_size
 
 
-boxes = np.random.randint(0,2,(L,B))
-columns,rows = int( X/L), int(Y/B)
+    boxes = np.random.randint(0,2,(L,B))
+    columns,rows = int( X/L), int(Y/B)
 
 
-# print(boxes)
-screen = pg.display.set_mode((X,Y))
-clock =pg.time.Clock();
-running = True
+    # print(boxes)
+    screen = pg.display.set_mode((X,Y))
+    clock =pg.time.Clock();
+    running = True
 
 
-WindowPaused = True
-WindowEdit = False
-while running:
-    for event in pg.event.get():
-        mouse_x,mouse_y=pg.mouse.get_pos()
-         
-        if event.type == pg.MOUSEBUTTONDOWN:
-            x,y =pg.mouse.get_pos()
-            logic.state_changer((x//columns,y//rows),boxes,None)  
+    WindowPaused = True
+    WindowEdit = False
+    while running:
+        for event in pg.event.get():
+            mouse_x,mouse_y=pg.mouse.get_pos()
             
-        if event.type == pg.QUIT:
-            running = False
-        if event.type == pg.KEYDOWN:
-            if event.key == pg.K_p:
-                WindowPaused = not WindowPaused
-            if event.key == pg.K_e:
-                WindowEdit = not WindowEdit
-            if event.key == pg.K_r:
-                boxes.fill(False)
+            if event.type == pg.MOUSEBUTTONDOWN:
+                x,y =pg.mouse.get_pos()
+                logic.state_changer((x//columns,y//rows),boxes,None)  
                 
+            if event.type == pg.QUIT:
+                running = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_p:
+                    WindowPaused = not WindowPaused
+                if event.key == pg.K_e:
+                    WindowEdit = not WindowEdit
+                if event.key == pg.K_r:
+                    boxes.fill(False)
+                    
 
-    if WindowPaused:
-        display_paused(screen)
-    elif WindowEdit:
-       
-        screen.fill("black")
-        make_grid(screen,rows,columns,X,Y)
-        paint_cells(screen,rows,columns,boxes)
-        make_grid(screen,rows,columns,X,Y)
+        if WindowPaused:
+            display_paused(screen)
+        elif WindowEdit:
+        
+            screen.fill("black")
+            make_grid(screen,rows,columns,X,Y)
+            paint_cells(screen,rows,columns,boxes)
+            make_grid(screen,rows,columns,X,Y)
 
-    else:         
-        screen.fill("black")
-        make_grid(screen,rows,columns,X,Y)
-        paint_cells(screen,rows,columns,boxes)
-        make_grid(screen,rows,columns,X,Y)
-        boxes=logic.life(boxes).copy()
-        time.sleep(0.5)
-    
+        else:         
+            screen.fill("black")
+            make_grid(screen,rows,columns,X,Y)
+            paint_cells(screen,rows,columns,boxes)
+            make_grid(screen,rows,columns,X,Y)
+            boxes=logic.life(boxes).copy()
+            time.sleep(0.5)
+        
 
-    pg.display.flip()
-    clock.tick(60)
-pg.quit()
+        pg.display.flip()
+        clock.tick(60)
+    pg.quit()
 
 
+main()
