@@ -20,14 +20,14 @@ def paint_cells(screen:pg.surface.Surface,width:int,height:int,np_array:np.ndarr
                     pg.draw.rect(screen,"beige",(i*width,j*height,width,height))
 
 
-def display_paused_helper(text,y_incr,screen)->None:
+def display_paused_helper(text:str,y_incr:int,screen:pg.surface.Surface)->None:
     font = pg.font.Font(None,40)
     text = font.render(text,True,(10,255,10))
     text_position = text.get_rect(centerx=screen.get_width() / 2 + 20, y=screen.get_width()/2+y_incr)
     screen.blit(text,text_position )
-    
+   
 
-def display_paused(screen):
+def display_paused(screen:pg.surface.Surface)->None:
     bg_color = pg.Color(51,51,51,200)
     screen.fill(bg_color);
     font = pg.font.Font(None,64)
@@ -36,8 +36,8 @@ def display_paused(screen):
     textpos = text.get_rect(centerx=screen.get_width() / 2, y=screen.get_width()/2-110)
     screen.blit(text, textpos)
     screen.blit(screen, (0, 0))
-    display_paused_helper("Press P to Start and Stop",0,screen=screen)
 
+    display_paused_helper("Press P to Start and Stop",0,screen=screen)
     display_paused_helper("Press R to reset",40,screen=screen)
     display_paused_helper("Press E to toggle edit mode",80,screen)
     
