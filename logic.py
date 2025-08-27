@@ -19,7 +19,7 @@ def judge(cell:tuple,neighbour_live_count:int,np_array:np.ndarray)->None:
     else:
         state_changer(cell,np_array,isalive)
 
-    
+ 
 def does_cell_exist(cell:tuple,array_shape:tuple)->bool:
     x,y = cell
     length_x,length_y = array_shape
